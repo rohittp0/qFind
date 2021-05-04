@@ -1,0 +1,73 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [{
+            "label": "Compile",
+            "type": "shell",
+            "command": "gcc-10",
+            "problemMatcher": ["$gcc"],
+            "promptOnClose": false,
+            "args": ["-g", "${fileBasename}", "-lpthread", "-o", "/tmp/${fileBasenameNoExtension}"],
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Run",
+            "type": "process",
+            "command": "/tmp/${fileBasenameNoExtension}",
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "promptOnClose": false,
+            "dependsOn": ["Compile"],
+            "dependsOrder": "sequence",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Make",
+            "type": "shell",
+            "command": "mv -f /tmp/${fileBasenameNoExtension} ${workspaceFolder}",
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "promptOnClose": false,
+            "dependsOn": ["Compile"],
+            "dependsOrder": "sequence",
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        }
+    ]
+}
