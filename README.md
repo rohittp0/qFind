@@ -8,7 +8,7 @@
 
 ![image](https://user-images.githubusercontent.com/63339782/196938811-66ebb220-a9b4-442c-bc88-98bdec369641.png)
 
-## Usage
+# Usage
 
 qfind \[path\] \[regexp\] \[options\]
 - Options
